@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_v500.mk
+    $(LOCAL_DIR)/device_awifi.mk

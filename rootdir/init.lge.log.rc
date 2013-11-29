@@ -1,0 +1,116 @@
+on post-fs-data
+    mkdir /data/logger 0775 system system
+
+# kernel log
+service log-kernel /system/bin/sh /system/bin/logger_kernel.sh
+    class main
+	disabled
+	oneshot
+
+on property:persist.service.kernel.enable=1
+    start log-kernel
+
+on property:persist.service.kernel.enable=0
+    stop log-kernel
+
+on property:persist.service.crash.enable=1
+    write /sys/module/lge_panic_handler/parameters/crash_handler_enable 1
+
+on property:persist.service.crash.enable=0
+    write /sys/module/lge_panic_handler/parameters/crash_handler_enable 0
+
+on property:persist.service.rtb.enable=1
+    write /sys/module/msm_rtb/parameters/filter 63
+
+on property:persist.service.rtb.enable=0
+    write /sys/module/msm_rtb/parameters/filter 0
+
+# logcat main
+service logcat-main /system/bin/sh /system/bin/logger_main.sh
+    class main
+	disabled
+	oneshot
+
+on property:persist.service.main.enable=1
+	start logcat-main
+
+on property:persist.service.main.enable=0
+	stop logcat-main
+
+# logcat system
+service logcat-system /system/bin/sh /system/bin/logger_system.sh
+    class main
+	disabled
+	oneshot
+
+on property:persist.service.system.enable=1
+	start logcat-system
+
+on property:persist.service.system.enable=0
+	stop logcat-system
+
+# logcat radio
+service logcat-radio /system/bin/sh /system/bin/logger_radio.sh
+    class main
+	disabled
+	oneshot
+
+on property:persist.service.radio.enable=1
+	start logcat-radio
+
+on property:persist.service.radio.enable=0
+	stop logcat-radio
+
+# logcat events
+service logcat-events /system/bin/sh /system/bin/logger_events.sh
+    class main
+	disabled
+	oneshot
+
+on property:persist.service.events.enable=1
+	start logcat-events
+
+on property:persist.service.events.enable=0
+	stop logcat-events
+
+#tcpdump - packet log
+service log-packet /system/bin/sh /system/bin/logger_packet.sh
+    class main
+	disabled
+	oneshot
+
+on property:persist.service.packet.enable=1
+	start log-packet
+
+on property:persist.service.packet.enable=0
+	stop log-packet
+
+# Log size change when Internal Storage full
+# This property, persist.service.log.lowstorage, is set by
+# vendor/lge/apps/HiddenMenu/src/com/lge/hiddenmenu/wcdma_only/log_service/StorageStatusReceiver.java
+on property:persist.service.log.lowstorage=1
+    stop log-kernel
+    start log-kernel
+    stop logcat-main
+    start logcat-main
+    stop logcat-system
+    start logcat-system
+    stop logcat-radio
+    start logcat-radio
+    stop logcat-events
+    start logcat-events
+    stop log-packet
+
+on property:persist.service.log.lowstorage=0
+    stop log-kernel
+    start log-kernel
+    stop logcat-main
+    start logcat-main
+    stop logcat-system
+    start logcat-system
+    stop logcat-radio
+    start logcat-radio
+    stop logcat-events
+    start logcat-events
+    start log-packet
+
