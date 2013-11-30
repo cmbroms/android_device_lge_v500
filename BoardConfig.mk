@@ -4,7 +4,7 @@ USE_CAMERA_STUB := true
 -include vendor/lge/awifi/BoardConfigVendor.mk
 
 TARGET_ARCH := arm
-TARGET_BOARD_PLATFORM := unknown
+TARGET_BOARD_PLATFORM := msm8960
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
