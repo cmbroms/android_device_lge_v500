@@ -51,10 +51,21 @@ BOARD_USES_SEPERATED_AUDIO_INPUT := true
 
 BOARD_EGL_CFG := device/lge/awifi/egl.cfg
 
-RECOVERY_FSTAB_VERSION = 2
-TARGET_RECOVERY_FSTAB = device/lge/awifi/fstab.awifi
+# Use this flag if the board has a ext4 partition larger than 2gb
+BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_USERIMAGES_USE_EXT4 := true
+
+#RECOVERY_FSTAB_VERSION = 2
+#TARGET_RECOVERY_FSTAB = device/lge/awifi/fstab.awifi
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 ENABLE_LOKI_RECOVERY := true
+
+# TWRP specific build flags
+DEVICE_RESOLUTION := 1080x1920
+RECOVERY_SDCARD_ON_DATA := true
+#BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 BOARD_USES_SECURE_SERVICES := true
 
