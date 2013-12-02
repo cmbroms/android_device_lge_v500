@@ -12,7 +12,7 @@ $(call inherit-product, device/lge/awifi/device_awifi.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := awifi
-PRODUCT_NAME := cm_awifi
+PRODUCT_NAME := cmb_awifi
 PRODUCT_BRAND := lge
 PRODUCT_MODEL := v500
 PRODUCT_MANUFACTURER := lge
