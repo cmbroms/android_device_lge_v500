@@ -14,5 +14,5 @@ $(call inherit-product, device/lge/awifi/device_awifi.mk)
 PRODUCT_DEVICE := awifi
 PRODUCT_NAME := cm_awifi
 PRODUCT_BRAND := lge
-PRODUCT_MODEL := awifi
+PRODUCT_MODEL := v500
 PRODUCT_MANUFACTURER := lge

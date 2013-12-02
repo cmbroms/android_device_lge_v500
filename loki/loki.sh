@@ -4,10 +4,6 @@
 # to bypass the bootloader checks on jfltevzw and jflteatt
 # See here for more information on loki: https://github.com/djrbliss/loki
 #
-#
-# Run loki patch on boot.img for locked bootloaders, found in loki_bootloaders
-#
-# Unlocked (dev edition) bootloaders found in unlocked_bootloaders file
 
 export C=/tmp/loki_tmpdir
 

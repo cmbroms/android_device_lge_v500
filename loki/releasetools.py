@@ -20,7 +20,7 @@
 # See here for more information on loki: https://github.com/djrbliss/loki
 #
 
-"""Custom OTA commands for jf devices with locked bootloaders"""
+"""Custom OTA commands for LG devices with locked bootloaders"""
 
 def FullOTA_InstallEnd(info):
   info.script.script = [cmd for cmd in info.script.script if not "boot.img" in cmd]
