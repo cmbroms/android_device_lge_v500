@@ -1,0 +1,2 @@
+add_lunch_combo cmb_awifi-userdebug
+add_lunch_combo cmb_awifi-eng
