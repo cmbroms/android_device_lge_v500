@@ -38,11 +38,11 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-TARGET_PREBUILT_KERNEL := device/lge/awifi/kernel
+#TARGET_PREBUILT_KERNEL := device/lge/awifi/kernel
 
 # Try to build the kernel
-#TARGET_KERNEL_SOURCE := kernel/lge/awifi
-#TARGET_KERNEL_CONFIG := cmb_defconfig
+TARGET_KERNEL_SOURCE := kernel/lge/awifi
+TARGET_KERNEL_CONFIG := cmb_defconfig
 
 BOARD_USES_ALSA_AUDIO:= true
 BOARD_USES_LEGACY_ALSA_AUDIO:= false
@@ -50,6 +50,10 @@ BOARD_USES_FLUENCE_INCALL := true
 BOARD_USES_SEPERATED_AUDIO_INPUT := true
 
 BOARD_EGL_CFG := device/lge/awifi/egl.cfg
+
+# Use this flag if the board has a ext4 partition larger than 2gb
+BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_USERIMAGES_USE_EXT4 := true
 
 RECOVERY_FSTAB_VERSION = 2
 TARGET_RECOVERY_FSTAB = device/lge/awifi/fstab.awifi

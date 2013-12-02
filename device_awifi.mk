@@ -19,14 +19,13 @@ PRODUCT_PACKAGES += \
         librs_jni
 
 LOCAL_PATH := device/lge/awifi
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
+#ifeq ($(TARGET_PREBUILT_KERNEL),)
+#	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+#else
+#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+#endif
 
 PRODUCT_COPY_FILES += \
-        $(LOCAL_KERNEL):kernel \
         $(LOCAL_PATH)/fstab.awifi:root/fstab.awifi \
         $(LOCAL_PATH)/init.awifi.rc:root/init.awifi.rc \
         $(LOCAL_PATH)/init.awifi.usb.rc:root/init.awifi.usb.rc \
@@ -127,9 +126,11 @@ PRODUCT_PACKAGES += \
 	liboverlay \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
-	copybit.msm8960
+	copybit.msm8960 \
+	keystore.msm8960
 
 PRODUCT_PACKAGES += \
+	alsa.msm8960 \
 	audio_policy.msm8960 \
 	audio.primary.msm8960 \
 	audio.a2dp.default \
@@ -138,13 +139,22 @@ PRODUCT_PACKAGES += \
 	libaudio-resampler
 
 # Voice processing
-PRODUCT_PACKAGES += libqcomvoiceprocessing
+PRODUCT_PACKAGES += \
+    libqcomvoiceprocessing \
+    libqcomvoiceprocessingdescriptors
+
+PRODUCT_PACKAGES += \
+	hci_qcomm_init
+
+PRODUCT_PACKAGES += \
+	power.msm8960
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio_effects.conf:system/etc/audio_effects.conf
 
 PRODUCT_PACKAGES += \
-        libmm-omxcore \
+	mm-vdec-omx-test \
+	mm-venc-omx-test720p \
 	libdivxdrmdecrypt \
 	libOmxVdec \
 	libOmxVenc \
