@@ -47,8 +47,8 @@ PRODUCT_COPY_FILES += \
 
 # WPA supplicant config
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(COMMON_PATH)/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+    $(LOCAL_PATH)/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/audio_policy.conf:system/etc/audio_policy.conf
