@@ -1,9 +1,21 @@
-USE_CAMERA_STUB := true
+#
+# Copyright (C) 2013 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 
-# inherit from the proprietary version
--include vendor/lge/awifi/BoardConfigVendor.mk
 
-TARGET_SPECIFIC_HEADER_PATH := device/lge/awifi/include
+ARGET_SPECIFIC_HEADER_PATH := device/lge/v500/include
 
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
@@ -23,42 +35,54 @@ TARGET_KRAIT_BIONIC_BBTHRESH := 64
 TARGET_KRAIT_BIONIC_PLDSIZE := 64
 
 TARGET_NO_BOOTLOADER := true
-TARGET_BOOTLOADER_BOARD_NAME := awifi
-TARGET_BOARD_PLATFORM := msm8960
 
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=600M
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
-# fix this up by examining /proc/mtd on a running device
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_FLASH_BLOCK_SIZE := 131072
-
-#TARGET_PREBUILT_KERNEL := device/lge/awifi/kernel
-
 # Try to build the kernel
-TARGET_KERNEL_SOURCE := kernel/lge/awifi
-TARGET_KERNEL_CONFIG := cmb_defconfig
+TARGET_KERNEL_SOURCE := kernel/lge/v500
+#TARGET_PREBUILT_KERNEL := device/lge/v500/kernel
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 androidboot.selinux=permissive msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=600M
+TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
+
 
 BOARD_USES_ALSA_AUDIO:= true
 BOARD_USES_LEGACY_ALSA_AUDIO:= false
 BOARD_USES_FLUENCE_INCALL := true
 BOARD_USES_SEPERATED_AUDIO_INPUT := true
 
-BOARD_EGL_CFG := device/lge/awifi/egl.cfg
+BOARD_HAVE_BLUETOOTH := true
 
-# Use this flag if the board has a ext4 partition larger than 2gb
-BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_NO_RADIOIMAGE := true
+TARGET_BOARD_PLATFORM := msm8960
 
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_HOSTAPD_DRIVER := NL80211
+
+BOARD_EGL_CFG := device/lge/v500/egl.cfg
+
+#BOARD_USES_HGL := true
+#BOARD_USES_OVERLAY := true
+USE_OPENGL_RENDERER := true
+TARGET_USES_ION := true
+TARGET_USES_OVERLAY := true
+TARGET_USES_SF_BYPASS := true
+TARGET_USES_C2D_COMPOSITION := true
+
+# Recovery
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 RECOVERY_FSTAB_VERSION = 2
-TARGET_RECOVERY_FSTAB = device/lge/awifi/fstab.awifi
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 ENABLE_LOKI_RECOVERY := true
+
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 23068672 # 22M
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 23068672 # 22M
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 880803840 # 840M
+
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 6189744128 # 5.9G
+BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
 BOARD_USES_SECURE_SERVICES := true
 
@@ -79,12 +103,33 @@ TARGET_USES_QCOM_BSP := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP_CAMERA_ABI_HACK -DQCOM_BSP
 TARGET_QCOM_DISPLAY_VARIANT := caf
 TARGET_QCOM_MEDIA_VARIANT := caf
-TARGET_DISPLAY_USE_RETIRE_FENCE := true
+#TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
-COMMON_GLOBAL_CFLAGS += -DLG_CAMERA_HARDWARE
+
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BLUETOOTH_HCI_USE_MCT := true
+
+TARGET_BOOTLOADER_BOARD_NAME := awifi
+TARGET_BOOTLOADER_NAME=v500
+
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/v500/bluetooth
+
+# FIXME: HOSTAPD-derived wifi driver
+BOARD_HAS_QCOM_WLAN := true
+BOARD_WLAN_DEVICE := qcwcn
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_FW_PATH_AP  := "ap"
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
+TARGET_RECOVERY_FSTAB = device/lge/v500/fstab.gvar
+
+BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_SEPOLICY_DIRS += \
-        device/lge/awifi/sepolicy
+        device/lge/v500/sepolicy
 
 BOARD_SEPOLICY_UNION += \
 	file_contexts \
@@ -116,10 +161,6 @@ BOARD_SEPOLICY_UNION += \
 	ueventd.te \
 	wpa_supplicant.te
 
-TARGET_OTA_ASSERT_DEVICE := awifi
+TARGET_RELEASETOOLS_EXTENSIONS := device/lge/v500/releasetools
 
-TARGET_RELEASETOOLS_EXTENSIONS := device/lge/awifi/loki
-
-COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
-
-BOARD_HARDWARE_CLASS := device/lge/awifi/cmhw/
+BOARD_USES_QC_TIME_SERVICES := true

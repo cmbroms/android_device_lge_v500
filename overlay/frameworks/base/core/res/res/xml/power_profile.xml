@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device name="Android">
     <item name="none">0</item>
-    <item name="screen.on">162.8</item>
+    <item name="screen.on">420.2</item>
     <item name="bluetooth.active">37.7</item>
     <item name="bluetooth.on">2.1</item>
-    <item name="screen.full">257.2</item>
+    <item name="screen.full">663.8</item>
     <item name="wifi.on">5.4</item>
     <item name="wifi.active">232.9</item>
     <item name="wifi.scan">32.7</item>
@@ -51,5 +51,5 @@
         <value>238.8</value>
         <value>268.7</value>
     </array>
-    <item name="battery.capacity">3140</item>
+    <item name="battery.capacity">4600</item>
 </device>
