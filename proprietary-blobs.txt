@@ -112,6 +112,7 @@ bin/bridgemgrd
 bin/btnvtool
 bin/ds_fmc_appd
 bin/efsks
+bin/irsc_util
 bin/hci_qcomm_init
 bin/ks
 bin/netmgrd
