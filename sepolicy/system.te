@@ -1,6 +1,9 @@
 # Grant GPU access to system apps (e.g., PowerManagerService)
 allow system gpu_device:chr_file rw_file_perms;
-allow system diag_device:chr_file rw_file_perms;
+allow system diagnostic_device:chr_file rw_file_perms;
+
+allow system init:unix_dgram_socket sendto;
+allow system wpa_socket:unix_dgram_socket sendto;
 
 # Grant access to Qualcomm MSM Interface (QMI) radio sockets to system apps
 # (e.g., LocationManager)
