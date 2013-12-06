@@ -23,8 +23,14 @@
 # Qualcomm audio firmware files
 /data/misc/audio/*                 u:object_r:audio_firmware_file:s0
 
+# for wpa
+/dev/rfkill                    u:object_r:rfkill_device:s0
+
 /dev/ks_hsic_bridge                u:object_r:kickstart_device:s0
 /dev/efs_hsic_bridge               u:object_r:kickstart_device:s0
+
+/data/etc/bluetooth_bdaddr     u:object_r:bluetooth_data_file:s0
+/data/etc/wlan_macaddr[0-3]    u:object_r:wifi_data_file:s0
 
 /system/bin/qcks                   u:object_r:kickstart_exec:s0
 /system/bin/efsks                  u:object_r:kickstart_exec:s0
@@ -32,5 +38,5 @@
 
 /data/nfc(/.*)?                    u:object_r:nfc_data_file:s0
 
-/system/bin/hci_qcomm_init         u:object_r:hci_exec:s0
-/system/bin/bdAddrLoader           u:object_r:hci_exec:s0
+/system/bin/hci_qcomm_init       u:object_r:hci_attach_exec:s0
+/system/etc/init.qcom.bt.sh      u:object_r:bluetooth_loader_exec:s0
