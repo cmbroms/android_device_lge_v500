@@ -192,10 +192,10 @@ PRODUCT_PACKAGES += \
 	lights.msm8960
 
 PRODUCT_COPY_FILES += \
-        $(LOCAL_PATH)/mixer_paths.xml:system/etc/mixer_paths.xml
+        $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/thermald.conf:system/etc/thermald.conf
+	$(LOCAL_PATH)/rootdir/system/etc/thermald.conf:system/etc/thermald.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=320
