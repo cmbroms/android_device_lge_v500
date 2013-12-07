@@ -85,7 +85,8 @@ PRODUCT_COPY_FILES += \
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf
+	$(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf \
+    device/lge/v500/sec_config:system/etc/sec_config
 
 # NFC packages
 PRODUCT_PACKAGES += \
@@ -134,6 +135,14 @@ PRODUCT_PACKAGES += \
 	e2fsck
 
 PRODUCT_PACKAGES += \
+    libqomx_core \
+    libmmcamera_interface \
+    libmmjpeg_interface \
+    camera.v500 \
+    mm-jpeg-interface-test \
+    mm-qcamera-app
+
+PRODUCT_PACKAGES += \
 	libgenlock \
 	liboverlay \
 	hwcomposer.msm8960 \
@@ -149,7 +158,7 @@ PRODUCT_PACKAGES += \
 	libaudio-resampler
 
 PRODUCT_PACKAGES += \
-        libmm-omxcore \
+    libmm-omxcore \
 	libdivxdrmdecrypt \
 	libOmxVdec \
 	libOmxVenc \
