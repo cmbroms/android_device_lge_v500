@@ -33,7 +33,7 @@ PRODUCT_PACKAGES += \
         librs_jni
 
 PRODUCT_COPY_FILES += \
-        $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
+    $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
 	$(LOCAL_PATH)/rootdir/init.awifi.rc:root/init.awifi.rc \
 	$(LOCAL_PATH)/rootdir/fstab.gvar:root/fstab.awifi \
 	$(LOCAL_PATH)/rootdir/ueventd.awifi.rc:root/ueventd.awifi.rc
@@ -107,13 +107,14 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=196608
 
 # Audio Configuration
-# FIXME: Remove persist.audio.handset.mic and persist.audio.fluence.mode
+# Remove persist.audio.handset.mic and persist.audio.fluence.mode
 #        while switching new audio HAL from legacy HAL
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.audio.handset.mic=digital \
@@ -147,7 +148,8 @@ PRODUCT_PACKAGES += \
 	liboverlay \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
-	copybit.msm8960
+	copybit.msm8960 \
+	memtrack.msm8960
 
 PRODUCT_PACKAGES += \
 	audio_policy.msm8960 \
@@ -201,7 +203,7 @@ PRODUCT_PACKAGES += \
 	lights.msm8960
 
 PRODUCT_COPY_FILES += \
-        $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
+    $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/system/etc/thermald.conf:system/etc/thermald.conf
@@ -212,6 +214,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
 	conn_init \
 	hwaddrs
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/rootdir/system/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.bt.bdaddr_path=/data/misc/bdaddr

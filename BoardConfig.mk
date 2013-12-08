@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+TARGET_SPECIFIC_HEADER_PATH := device/lge/v500/include
+
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_CPU_ABI := armeabi-v7a
@@ -39,9 +41,9 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/lge/v500
-#TARGET_PREBUILT_KERNEL := device/lge/v500/kernel
+TARGET_KERNEL_CONFIG := cmb_v500_defconfig
+
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 user_debug=31 androidboot.selinux=permissive msm_rtb.filter=0x3F ehci-hcd.park=3 lpj=67677 androidboot.hardware=awifi vmalloc=600M
-TARGET_KERNEL_CONFIG := cyanogenmod_v500_defconfig
 
 
 BOARD_USES_ALSA_AUDIO:= true
@@ -60,8 +62,6 @@ BOARD_HOSTAPD_DRIVER := NL80211
 
 BOARD_EGL_CFG := device/lge/v500/egl.cfg
 
-#BOARD_USES_HGL := true
-#BOARD_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
@@ -84,6 +84,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_USES_SECURE_SERVICES := true
 
 BOARD_USES_EXTRA_THERMAL_SENSOR := true
+BOARD_USES_CAMERA_FAST_AUTOFOCUS := true
 
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 TARGET_NO_RPC := true
@@ -95,15 +96,13 @@ BOARD_HAVE_LOW_LATENCY_AUDIO := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_USES_QCOM_HARDWARE := true
-#TARGET_USES_QCOM_BSP := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP_CAMERA_ABI_HACK 
-#-DQCOM_BSP
-USE_DEVICE_SPECIFIC_CAMERA := true
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP_CAMERA_ABI_HACK
 TARGET_QCOM_DISPLAY_VARIANT := caf
 TARGET_QCOM_MEDIA_VARIANT := caf
+USE_DEVICE_SPECIFIC_CAMERA := true
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-#TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -114,7 +113,7 @@ TARGET_BOOTLOADER_NAME := v500
 
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/v500/bluetooth
 
-# FIXME: HOSTAPD-derived wifi driver
+# wifi driver
 BOARD_HAS_QCOM_WLAN := true
 BOARD_WLAN_DEVICE := qcwcn
 WIFI_DRIVER_FW_PATH_STA := "sta"
@@ -132,6 +131,7 @@ BOARD_SEPOLICY_DIRS += \
         device/lge/v500/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+	app.te \
 	file_contexts \
 	property_contexts \
 	te_macros \
@@ -145,7 +145,9 @@ BOARD_SEPOLICY_UNION += \
 	drmserver.te \
 	file.te \
 	kickstart.te \
-	init.te \
+	nfc.te \
+	init_shell.te \
+	keystore.te \
 	mediaserver.te \
 	mpdecision.te \
 	netmgrd.te \
