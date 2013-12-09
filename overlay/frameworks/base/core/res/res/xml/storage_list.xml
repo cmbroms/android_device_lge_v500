@@ -33,7 +33,7 @@
         android:primary="false"
         android:removable="true" />
 
-    <storage android:mountPoint="/storage/usb"
+    <storage android:mountPoint="/storage/usbisk"
         android:storageDescription="@string/storage_usb"
         android:primary="false"
         android:removable="true" />

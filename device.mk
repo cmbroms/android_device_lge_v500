@@ -206,7 +206,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/rootdir/system/etc/thermald.conf:system/etc/thermald.conf
+	$(LOCAL_PATH)/rootdir/system/etc/thermald.conf:system/etc/thermald.conf \
+	$(LOCAL_PATH)/rootdir/system/etc/vold.fstab:system/etc/vold.fstab
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=320
