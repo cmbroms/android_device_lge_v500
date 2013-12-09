@@ -14,7 +14,7 @@ type bluetooth_device, dev_type;
 type shared_memory_device, dev_type;
 type rfkill_device, dev_type;
 
-type diagnostic_device, dev_type;
+#NFC
 type bcm2079x_device, dev_type;
 
 # Qualcomm MSM Audio ACDB device
