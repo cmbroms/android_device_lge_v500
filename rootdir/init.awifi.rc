@@ -49,6 +49,7 @@ on post-fs-data
 on early-init
     mkdir /firmware 0771 system system
     symlink /data/tombstones /tombstones
+    setprop ro.crypto.fuse_sdcard true
 
 on early-fs
     mkdir /persist 0771 system system
