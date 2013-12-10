@@ -32,37 +32,37 @@ PRODUCT_PACKAGES += \
         VisualizationWallpapers \
         librs_jni
 
+#Ramdisk Files
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
+        $(LOCAL_PATH)/rootdir/init.awifi.usb.rc:root/init.awifi.usb.rc \
 	$(LOCAL_PATH)/rootdir/init.awifi.rc:root/init.awifi.rc \
 	$(LOCAL_PATH)/rootdir/fstab.gvar:root/fstab.awifi \
 	$(LOCAL_PATH)/rootdir/ueventd.awifi.rc:root/ueventd.awifi.rc
 
+#Files needed for WIFI
 PRODUCT_COPY_FILES += \
         $(LOCAL_PATH)/rootdir/system/vendor/firmware/wlan/prima/WCNSS_cfg.dat:system/vendor/firmware/wlan/prima/WCNSS_cfg.dat \
         $(LOCAL_PATH)/rootdir/system/etc/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-        $(LOCAL_PATH)/rootdir/system/etc/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin
-
-# WPA supplicant config
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+        $(LOCAL_PATH)/rootdir/system/etc/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin \
+        $(LOCAL_PATH)/rootdir/system/etc/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+        $(LOCAL_PATH)/rootdir/system/etc/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/rootdir/system/etc/audio_policy.conf:system/etc/audio_policy.conf
+	$(LOCAL_PATH)/rootdir/system/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+	$(LOCAL_PATH)/rootdir/system/etc/thermald.conf:system/etc/thermald.conf \
+	$(LOCAL_PATH)/rootdir/system/etc/vold.fstab:system/etc/vold.fstab
 
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/rootdir/system/etc/audio_policy.conf:system/etc/audio_policy.conf \
 	$(LOCAL_PATH)/rootdir/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
-	$(LOCAL_PATH)/rootdir/system/etc/media_codecs.xml:system/etc/media_codecs.xml
+        $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
+	$(LOCAL_PATH)/rootdir/system/etc/media_codecs.xml:system/etc/media_codecs.xml 
 
-# Prebuilt kl and kcm keymaps
+# Prebuilt kl and kcm keymaps and Touch Screen Calibration
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/system/usr/keylayout/hs_detect.kl:system/usr/keylayout/hs_detect.kl \
 	$(LOCAL_PATH)/rootdir/system/usr/keylayout/pmic8xxx_pwrkey.kl:system/usr/keylayout/pmic8xxx_pwrkey.kl \
-	$(LOCAL_PATH)/rootdir/system/usr/keylayout/awifi-keypad-8064.kl:system/usr/keylayout/awifi-keypad-8064.kl
-
-# Prebuilt input device calibration files
-PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/rootdir/system/usr/keylayout/awifi-keypad-8064.kl:system/usr/keylayout/awifi-keypad-8064.kl \
 	$(LOCAL_PATH)/rootdir/system/usr/idc/touch_mxt1188S.idc:system/usr/idc/touch_mxt1188S.idc
 
 # These are the hardware-specific features
@@ -85,30 +85,7 @@ PRODUCT_COPY_FILES += \
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf \
-    device/lge/v500/sec_config:system/etc/sec_config
-
-# NFC packages
-PRODUCT_PACKAGES += \
-    libnfc \
-    libnfc_jni \
-    Nfc \
-    Tag \
-    com.android.nfc_extras
-
-# NFCEE access control
-ifeq ($(TARGET_BUILD_VARIANT),user)
-    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/nfc/nfcee_access.xml
-else
-    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/nfc/nfcee_access_debug.xml
-endif
-
-# NFC access control + feature files + configuration
-PRODUCT_COPY_FILES += \
-    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
+	$(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=196608
@@ -135,26 +112,37 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	e2fsck
 
+#Camera Packages WIP
 PRODUCT_PACKAGES += \
-    libqomx_core \
-    libmmjpeg_interface \
-    mm-jpeg-interface-test \
-    mm-qcamera-app \
+        libqomx_core \
+        libmmjpeg_interface \
+        mm-jpeg-interface-test \
+        mm-qcamera-app \
 	camera.msm8960.so \
 	libmmcamera_interface2 \
 	libmmcamera_interface \
 	libqomx_core
 
-
+#MSM QCOM Graphics
 PRODUCT_PACKAGES += \
 	libgenlock \
 	liboverlay \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
 	copybit.msm8960 \
-	keystore.msm8960 \
 	memtrack.msm8960
 
+#MSM QCOM Video
+PRODUCT_PACKAGES += \
+        libmm-omxcore \
+	libdivxdrmdecrypt \
+	libOmxVdec \
+	libOmxVenc \
+	libOmxCore \
+	libstagefrighthw \
+	libc2dcolorconvert
+
+#Audio Packages
 PRODUCT_PACKAGES += \
 	audio_policy.msm8960 \
 	audio.primary.msm8960 \
@@ -163,15 +151,7 @@ PRODUCT_PACKAGES += \
 	audio.r_submix.default \
 	libaudio-resampler
 
-PRODUCT_PACKAGES += \
-    libmm-omxcore \
-	libdivxdrmdecrypt \
-	libOmxVdec \
-	libOmxVenc \
-	libOmxCore \
-	libstagefrighthw \
-	libc2dcolorconvert
-
+#MSM QCOM GPS
 PRODUCT_PACKAGES += \
         libloc_adapter \
         libloc_eng \
@@ -184,15 +164,18 @@ PRODUCT_PACKAGES += \
         gps.msm8960 \
         flp.msm8960
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	rild.libpath=/system/lib/libril-qc-qmi-1.so
+#MSM QCOM Lights
+PRODUCT_PACKAGES += \
+	lights.msm8960
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	drm.service.enabled=true
-
+#MSM Networking
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0 \
 	wifi.supplicant_scan_interval=15
+
+#DRM
+PRODUCT_PROPERTY_OVERRIDES += \
+	drm.service.enabled=true
 
 # Enable AAC 5.1 output
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -208,15 +191,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
 
-PRODUCT_PACKAGES += \
-	lights.msm8960
-
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
-
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/rootdir/system/etc/thermald.conf:system/etc/thermald.conf \
-	$(LOCAL_PATH)/rootdir/system/etc/vold.fstab:system/etc/vold.fstab
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=320
@@ -225,17 +200,17 @@ PRODUCT_PACKAGES += \
 	conn_init \
 	hwaddrs
 
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/rootdir/system/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
-
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.bt.bdaddr_path=/data/misc/bdaddr
 
-# This hw ships locked, work around it with loki
+# LOKI Bootloader Workaround
 PRODUCT_PACKAGES += \
 	loki.sh \
 	loki_patch \
 	loki_flash
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	rild.libpath=/system/lib/libril-qc-qmi-1.so
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.radio.noril=true \
