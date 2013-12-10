@@ -137,11 +137,14 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libqomx_core \
-    libmmcamera_interface \
     libmmjpeg_interface \
-    camera.v500 \
     mm-jpeg-interface-test \
-    mm-qcamera-app
+    mm-qcamera-app \
+	camera.msm8960.so \
+	libmmcamera_interface2 \
+	libmmcamera_interface \
+	libqomx_core
+
 
 PRODUCT_PACKAGES += \
 	libgenlock \
@@ -149,6 +152,7 @@ PRODUCT_PACKAGES += \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
 	copybit.msm8960 \
+	keystore.msm8960 \
 	memtrack.msm8960
 
 PRODUCT_PACKAGES += \
@@ -169,11 +173,16 @@ PRODUCT_PACKAGES += \
 	libc2dcolorconvert
 
 PRODUCT_PACKAGES += \
-	libloc_adapter \
-	libloc_eng \
-	libloc_api_v02 \
-	libgps.utils \
-	gps.msm8960
+        libloc_adapter \
+        libloc_eng \
+        libloc_api_v02 \
+        libloc_ds_api \
+        libloc_core \
+        libizat_core \
+        libgeofence \
+        libgps.utils \
+        gps.msm8960 \
+        flp.msm8960
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so
