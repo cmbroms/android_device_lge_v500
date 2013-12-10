@@ -106,6 +106,7 @@ lib/libWVphoneAPI.so
 lib/libtime_genoff.so
 lib/hw/camera.msm8960.so
 lib/hw/sensors.msm8960.so
+lib/hw/flp.msm8960.so
 bin/ATFWD-daemon
 bin/bridgemgrd
 bin/btnvtool
