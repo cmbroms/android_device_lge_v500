@@ -107,6 +107,7 @@ lib/libtime_genoff.so
 lib/hw/camera.msm8960.so
 lib/hw/sensors.msm8960.so
 lib/hw/flp.msm8960.so
+lib/hw/gps.msm8960.so
 bin/ATFWD-daemon
 bin/bridgemgrd
 bin/btnvtool
@@ -146,7 +147,13 @@ lib/libC2D2.so
 lib/libc2d2_a3xx.so
 lib/liblgftmitem.so
 lib/libllvm-a3xx.so
+lib/libgeofence.so
+lib/libgps.utils.so
+lib/libizat_core.so
 lib/libloc_api_v02.so
+lib/libloc_eng.so
+lib/libloc_core.so
+lib/libloc_ds_api.so
 lib/libsc-a2xx.so
 lib/libsc-a3xx.so
 lib/libgsl.so

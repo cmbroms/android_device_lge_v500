@@ -136,15 +136,14 @@ PRODUCT_PACKAGES += \
 	e2fsck
 
 PRODUCT_PACKAGES += \
-    libqomx_core \
-    libmmjpeg_interface \
-    mm-jpeg-interface-test \
-    mm-qcamera-app \
+        libqomx_core \
+        libmmjpeg_interface \
+        mm-jpeg-interface-test \
+        mm-qcamera-app \
 	camera.msm8960.so \
 	libmmcamera_interface2 \
 	libmmcamera_interface \
 	libqomx_core
-
 
 PRODUCT_PACKAGES += \
 	libgenlock \
@@ -152,7 +151,6 @@ PRODUCT_PACKAGES += \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
 	copybit.msm8960 \
-	keystore.msm8960 \
 	memtrack.msm8960
 
 PRODUCT_PACKAGES += \
@@ -164,7 +162,7 @@ PRODUCT_PACKAGES += \
 	libaudio-resampler
 
 PRODUCT_PACKAGES += \
-    libmm-omxcore \
+        libmm-omxcore \
 	libdivxdrmdecrypt \
 	libOmxVdec \
 	libOmxVenc \
@@ -212,7 +210,7 @@ PRODUCT_PACKAGES += \
 	lights.msm8960
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
+        $(LOCAL_PATH)/rootdir/system/etc/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/system/etc/thermald.conf:system/etc/thermald.conf \
