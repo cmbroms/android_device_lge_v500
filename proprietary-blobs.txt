@@ -3,6 +3,7 @@ bin/bridgemgrd
 bin/btnvtool
 bin/ds_fmc_appd
 bin/efsks
+bin/gsiff_daemon
 bin/hci_qcomm_init
 bin/irsc_util
 bin/ks
@@ -110,6 +111,7 @@ lib/libimage-omx-common.so
 lib/libizat_core.so
 lib/liblgftmitem.so
 lib/libllvm-a3xx.so
+lib/libloc_adapter.so
 lib/libloc_api_v02.so
 lib/libloc_core.so
 lib/libloc_ds_api.so
@@ -161,3 +163,4 @@ lib/libsensor1.so
 lib/libtime_genoff.so
 lib/libWVphoneAPI.so
 lib/libxml.so
+lib/libxt_v02.so

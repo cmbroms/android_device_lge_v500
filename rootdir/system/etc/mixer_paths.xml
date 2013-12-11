@@ -7,11 +7,11 @@
     <ctl name="Voice Tx Mute" value="0" />
     <ctl name="Voice Rx Volume" value="0" />
     <ctl name="TTY Mode" value="Off" />
-    <ctl name="LINEOUT1 Volume" value="12" />
-    <ctl name="LINEOUT2 Volume" value="12" />
-    <ctl name="LINEOUT3 Volume" value="12" />
-    <ctl name="LINEOUT4 Volume" value="12" />
-    <ctl name="LINEOUT5 Volume" value="12" />
+    <ctl name="LINEOUT1 Volume" value="16" />
+    <ctl name="LINEOUT2 Volume" value="16" />
+    <ctl name="LINEOUT3 Volume" value="16" />
+    <ctl name="LINEOUT4 Volume" value="16" />
+    <ctl name="LINEOUT5 Volume" value="16" />
     <ctl name="HPHL Volume" value="6" />
     <ctl name="HPHR Volume" value="6" />
     <ctl name="RX1 Digital Volume" value="60" />
@@ -37,8 +37,7 @@
     <ctl name="DEC8 Volume" value="84" />
     <ctl name="DEC9 Volume" value="84" />
     <ctl name="DEC10 Volume" value="84" />
-    <ctl name="MICBIAS1 CAPLESS Switch" value="1" />
-    <ctl name="MICBIAS2 CAPLESS Switch" value="0" />
+    <ctl name="MICBIAS1 CAPLESS Switch" value="0" />
     <ctl name="MICBIAS3 CAPLESS Switch" value="0" />
     <ctl name="SLIMBUS_3_RX Port Mixer INTERNAL_BT_SCO_RX" value="0" />
     <ctl name="HDMI_RX Port Mixer SLIM_3_TX" value="0" />
@@ -185,7 +184,6 @@
     </path>
 
     <path name="voice-call bt-sco">
-        <ctl name="Internal BTSCO SampleRate" value="8000" />
         <ctl name="Voice Stub Tx Mixer INTERNAL_BT_SCO_TX" value="1" />
         <ctl name="SLIMBUS_1_RX Mixer Voice Stub" value="1" />
         <ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="1" />
@@ -223,12 +221,20 @@
     </path>
 
     <path name="speaker">
-        <ctl name="SLIM_0_RX Channels" value="One" />
+        <ctl name="SLIM_0_RX Channels" value="Two" />
         <ctl name="RX3 MIX1 INP1" value="RX1" />
+        <ctl name="RX5 MIX1 INP1" value="RX2" />
+        <ctl name="RX7 MIX1 INP1" value="RX3" />
         <ctl name="RX3 MIX1 INP2" value="RX6" />
         <ctl name="RX4 DSM MUX" value="DSM_INV" />
+        <ctl name="RX6 DSM MUX" value="DSM_INV" />
         <ctl name="RX3 Digital Volume" value="63" />
         <ctl name="SLIM TX3 MUX" value="RMIX3" />
+        <ctl name="LINEOUT1 Volume" value="17" />
+        <ctl name="LINEOUT2 Volume" value="17" />
+        <ctl name="LINEOUT3 Volume" value="17" />
+        <ctl name="LINEOUT4 Volume" value="17" />
+        <ctl name="LINEOUT5 Volume" value="17" />
     </path>
 
     <path name="speaker-reverse">
@@ -321,7 +327,7 @@
 
     <path name="voice-rec-mic">
         <path name="adc1" />
-        <ctl name="ADC1 Volume" value="2" />
+        <ctl name="ADC1 Volume" value="20" />
     </path>
 
     <path name="camcorder-mic">

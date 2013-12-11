@@ -17,7 +17,7 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME   "LG GPad 8.3"
+#define BTM_DEF_LOCAL_NAME   "LG GPad"
 #define BTA_DISABLE_DELAY 1500 /* in milliseconds */
 /* First attempt appears to always fail, so lower the timer and try again */
 #define PRELOAD_START_TIMEOUT_MS 2000

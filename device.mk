@@ -85,7 +85,8 @@ PRODUCT_COPY_FILES += \
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf
+	$(LOCAL_PATH)/rootdir/system/etc/gps.conf:system/etc/gps.conf \
+	$(LOCAL_PATH)/rootdir/system/etc/sap.conf:system/etc/sap.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=196608
@@ -144,11 +145,11 @@ PRODUCT_PACKAGES += \
 	libaudio-resampler
 
 #Camera Packages WIP
-PRODUCT_PACKAGES += \
-	camera.v500 \
-	camera.msm8960 \
-	libmmcamera_interface2 \
-	libmmcamera_interface
+#PRODUCT_PACKAGES += \
+#	camera.v500 \
+#	camera.msm8960 \
+#	libmmcamera_interface2 \
+#	libmmcamera_interface
 
 
 #MSM QCOM GPS

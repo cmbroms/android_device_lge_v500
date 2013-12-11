@@ -548,8 +548,8 @@ on boot
 # LGE_CHANGE_E, 20130108, seokjeong.hong@lge.com, AAT OTG Test
 
 # NFC Feature [start]
-   symlink /dev/ttyHSL2 /dev/snfc_uart
-   #symlink /dev/i2c-0 /dev/snfc_i2c
+#   symlink /dev/ttyHSL2 /dev/snfc_uart
+#   #symlink /dev/i2c-0 /dev/snfc_i2c
 # NFC Feature [end]
 
 # enable exfat feature
@@ -1074,7 +1074,6 @@ on property:persist.sys.cabc_off=true
 on property:persist.sys.cabc_off=false
     write /sys/devices/platform/mipi_lgit.1793/cabc_off 0
 
-
 service ssr_diag /system/bin/ssr_diag
     class late_start
     user system
@@ -1104,44 +1103,6 @@ on property:ro.build.type=user
    write /sys/module/subsystem_restart/parameters/restart_level 3
    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
    write /sys/module/wcnss_ssr_8960/parameters/enable_riva_ssr 1
-
-service ftm_ptt /system/bin/ftm_ptt -d
-    class late_start
-    user root
-    group radio
-    disabled
-    oneshot
-
-on property:hw.ftm_ptt_start=1
-    start ftm_ptt
-
-on property:hw.ftm_ptt_start=0
-    stop ftm_ptt
-#LGE_CHANGE_S 2012.04 lg-msp@lge.com MTS TEAM
-	service mtsd /system/bin/mtsd
-	class late_start
-	oneshot
-	socket mtsd.port stream 660 system system
-#LGE_CHANGE_E 2012.04 lg-msp@lge.com MTS TEAM
-
-
-# LGBACKUP [ig.kang@lge.com] SystemService Daemon
-service bnrd /system/bin/bnrd
-      class main
-      socket bnrd stream 660 root system
-      user root
-      group system radio sdcard_rw
-# LGBACKUP SystemService Daemon
-
-service ssbd /system/bin/ssbd
-    class main
-    disabled
-
-on property:ssbd.enable=1
-    start ssbd
-
-on property:ssbd.enable=0
-    stop ssbd
 
 service conn_init /system/bin/logwrapper /system/bin/conn_init
     class core
