@@ -90,6 +90,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=196608
 
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.sf.lcd_density=320
+
 # Audio Configuration
 # Remove persist.audio.handset.mic and persist.audio.fluence.mode
 #        while switching new audio HAL from legacy HAL
@@ -112,17 +115,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	e2fsck
 
-#Camera Packages WIP
-PRODUCT_PACKAGES += \
-        libqomx_core \
-        libmmjpeg_interface \
-        mm-jpeg-interface-test \
-        mm-qcamera-app \
-	camera.msm8960.so \
-	libmmcamera_interface2 \
-	libmmcamera_interface \
-	libqomx_core
-
 #MSM QCOM Graphics
 PRODUCT_PACKAGES += \
 	libgenlock \
@@ -134,7 +126,7 @@ PRODUCT_PACKAGES += \
 
 #MSM QCOM Video
 PRODUCT_PACKAGES += \
-        libmm-omxcore \
+    libmm-omxcore \
 	libdivxdrmdecrypt \
 	libOmxVdec \
 	libOmxVenc \
@@ -150,6 +142,14 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
 	audio.r_submix.default \
 	libaudio-resampler
+
+#Camera Packages WIP
+PRODUCT_PACKAGES += \
+	camera.v500 \
+	camera.msm8960 \
+	libmmcamera_interface2 \
+	libmmcamera_interface
+
 
 #MSM QCOM GPS
 PRODUCT_PACKAGES += \
@@ -190,11 +190,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
-
-PRODUCT_COPY_FILES += \
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=320
 
 PRODUCT_PACKAGES += \
 	conn_init \
