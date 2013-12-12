@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-#TARGET_SPECIFIC_HEADER_PATH := device/lge/v500/include
+TARGET_SPECIFIC_HEADER_PATH := device/lge/v500/include
 
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
