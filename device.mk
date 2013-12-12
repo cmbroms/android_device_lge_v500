@@ -144,7 +144,7 @@ PRODUCT_PACKAGES += \
 	audio.r_submix.default \
 	libaudio-resampler
 
-Camera Packages WIP
+#Camera Packages WIP
 PRODUCT_PACKAGES += \
 	camera.v500 \
 	camera.msm8960 \
