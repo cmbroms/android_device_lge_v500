@@ -125,16 +125,6 @@ PRODUCT_PACKAGES += \
 	copybit.msm8960 \
 	memtrack.msm8960
 
-#MSM QCOM Video
-PRODUCT_PACKAGES += \
-    libmm-omxcore \
-	libdivxdrmdecrypt \
-	libOmxVdec \
-	libOmxVenc \
-	libOmxCore \
-	libstagefrighthw \
-	libc2dcolorconvert
-
 #Audio Packages
 PRODUCT_PACKAGES += \
 	audio_policy.msm8960 \
@@ -144,26 +134,15 @@ PRODUCT_PACKAGES += \
 	audio.r_submix.default \
 	libaudio-resampler
 
-#Camera Packages WIP
+#MSM QCOM Video
 PRODUCT_PACKAGES += \
-	camera.v500 \
-	camera.msm8960 \
-	libmmcamera_interface2 \
-	libmmcamera_interface
-
-
-#MSM QCOM GPS
-PRODUCT_PACKAGES += \
-        libloc_adapter \
-        libloc_eng \
-        libloc_api_v02 \
-        libloc_ds_api \
-        libloc_core \
-        libizat_core \
-        libgeofence \
-        libgps.utils \
-        gps.msm8960 \
-        flp.msm8960
+    libmm-omxcore \
+	libdivxdrmdecrypt \
+	libOmxVdec \
+	libOmxVenc \
+	libOmxCore \
+	libstagefrighthw \
+	libc2dcolorconvert
 
 #MSM QCOM Lights
 PRODUCT_PACKAGES += \

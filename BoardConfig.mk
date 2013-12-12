@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-TARGET_SPECIFIC_HEADER_PATH := device/lge/v500/include
-
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_CPU_ABI := armeabi-v7a
@@ -84,9 +82,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_USES_SECURE_SERVICES := true
 
 BOARD_USES_EXTRA_THERMAL_SENSOR := true
-USE_CAMERA_STUB := false
-BOARD_USES_CAMERA_FAST_AUTOFOCUS := false
-USE_DEVICE_SPECIFIC_CAMERA:= true
+BOARD_USES_CAMERA_FAST_AUTOFOCUS := true
 
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 TARGET_NO_RPC := true
@@ -132,38 +128,25 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SEPOLICY_DIRS += \
         device/lge/v500/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-	app.te \
-	file_contexts \
-	property_contexts \
-	te_macros \
-	bluetooth_loader.te \
-	bridge.te \
-	camera.te \
-	conn_init.te \
-	device.te \
-	dhcp.te \
-	domain.te \
-	drmserver.te \
-	file.te \
-	kickstart.te \
-	nfc.te \
-	init_shell.te \
-	keystore.te \
-	mediaserver.te \
-	mpdecision.te \
-	netmgrd.te \
-	property.te \
-	qmux.te \
-	rild.te \
-	rmt.te \
-	sensors.te \
-	surfaceflinger.te \
-	system.te \
-	tee.te \
-	thermald.te \
-	ueventd.te \
-	wpa_supplicant.te
+BOARD_SEPOLICY_UNION := \
+        app.te \
+        bluetooth.te \
+        device.te \
+        domain.te \
+        drmserver.te \
+        file.te \
+        file_contexts \
+        hci_init.te \
+        init_shell.te \
+        keystore.te \
+        mediaserver.te \
+        kickstart.te \
+        nfc.te \
+        rild.te \
+        surfaceflinger.te \
+        system.te \
+        ueventd.te \
+        wpa.te
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/v500/releasetools
 

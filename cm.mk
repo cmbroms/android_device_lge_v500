@@ -5,9 +5,6 @@ TARGET_SCREEN_WIDTH := 1080
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cmb/config/common_full_tablet_wifionly.mk)
 
-# Enhanced NFC
-$(call inherit-product, vendor/cmb/config/nfc_enhanced.mk)
-
 # Inherit device configuration
 $(call inherit-product, device/lge/v500/v500.mk)
 

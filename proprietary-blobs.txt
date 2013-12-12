@@ -5,10 +5,8 @@ bin/ds_fmc_appd
 bin/efsks
 bin/gsiff_daemon
 bin/hci_qcomm_init
-bin/irsc_util
 bin/ks
 bin/mm-qcamera-daemon
-bin/mm-qcamera-app
 bin/mpdecision
 bin/netmgrd
 bin/port-bridge
@@ -22,7 +20,6 @@ bin/rmt_storage
 bin/sensors.qcom
 bin/thermald
 bin/time_daemon
-bin/v4l2-qcamera-app
 etc/firmware/a300_pfp.fw
 etc/firmware/a300_pm4.fw
 etc/firmware/vidc_1080p.fw
@@ -40,8 +37,6 @@ lib/hw/camera.msm8960.so
 lib/hw/flp.msm8960.so
 lib/hw/gps.msm8960.so
 lib/hw/sensors.msm8960.so
-lib/libacdbloader.so
-lib/libacdbloader.so
 lib/libacdbloader.so
 lib/libadsprpc.so
 lib/libAKM.so
@@ -102,10 +97,8 @@ lib/libgemini.so
 lib/libgeofence.so
 lib/libgps.utils.so
 lib/libgsl.so
-lib/libI420colorconvert.so
 lib/libHDR.so
 lib/libidl.so
-lib/libimage-jpeg-dec-omx-comp.so
 lib/libimage-jpeg-enc-omx-comp.so
 lib/libimage-omx-common.so
 lib/libizat_core.so
