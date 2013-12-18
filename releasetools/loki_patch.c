@@ -8,6 +8,7 @@
  * by Dan Rosenberg (@djrbliss)
  *
  */
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/mman.h>
@@ -15,39 +16,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-#define VERSION "2.1"
-
-#define BOOT_MAGIC_SIZE 8
-#define BOOT_NAME_SIZE 16
-#define BOOT_ARGS_SIZE 512
-
-struct boot_img_hdr {
-	unsigned char magic[BOOT_MAGIC_SIZE];
-	unsigned kernel_size;	/* size in bytes */
-	unsigned kernel_addr;	/* physical load addr */
-	unsigned ramdisk_size;	/* size in bytes */
-	unsigned ramdisk_addr;	/* physical load addr */
-	unsigned second_size;	/* size in bytes */
-	unsigned second_addr;	/* physical load addr */
-	unsigned tags_addr;		/* physical addr for kernel tags */
-	unsigned page_size;		/* flash page size we assume */
-	unsigned dt_size;		/* device_tree in bytes */
-	unsigned unused;		/* future expansion: should be 0 */
-	unsigned char name[BOOT_NAME_SIZE];	/* asciiz product name */
-	unsigned char cmdline[BOOT_ARGS_SIZE];
-	unsigned id[8];			/* timestamp / checksum / sha1 / etc */
-};
-
-struct loki_hdr {
-	unsigned char magic[4];		/* 0x494b4f4c */
-	unsigned int recovery;		/* 0 = boot.img, 1 = recovery.img */
-	unsigned char build[128];	/* Build number */
-
-	unsigned int orig_kernel_size;
-	unsigned int orig_ramdisk_size;
-	unsigned int ramdisk_addr;
-};
+#include "loki.h"
 
 struct target {
 	char *vendor;
@@ -252,6 +221,22 @@ struct target targets[] = {
 		.lg = 1,
 	},
 	{
+		.vendor = "DoCoMo",
+		.device = "LG G2",
+		.build = "L-01F",
+		.check_sigs = 0xf813538,
+		.hdr = 0xf8d41c0,
+		.lg = 1,
+	},
+	{
+		.vendor = "KT",
+		.device = "LG G Flex",
+		.build = "F340K",
+		.check_sigs = 0xf8124a4,
+		.hdr = 0xf8b6440,
+		.lg = 1,
+	},
+	{
 		.vendor = "International",
 		.device = "LG Optimus F5",
 		.build = "P87510e",
@@ -260,25 +245,62 @@ struct target targets[] = {
 		.lg = 1,
 	},
 	{
+		.vendor = "SKT",
+		.device = "LG Optimus LTE 3",
+		.build = "F260S10l",
+		.check_sigs = 0x88f11398,
+		.hdr = 0x88f8451c,
+		.lg = 1,
+	},
+	{
 		.vendor = "International",
-		.device = "LG G Pad",
+		.device = "LG G Pad 8.3",
 		.build = "V50010a",
 		.check_sigs = 0x88f10814,
 		.hdr = 0x88f801b8,
 		.lg = 1,
 	},
+	{
+		.vendor = "International",
+		.device = "LG G Pad 8.3",
+		.build = "V50010c or V50010e",
+		.check_sigs = 0x88f108bc,
+		.hdr = 0x88f801b8,
+		.lg = 1,
+	},
+	{
+		.vendor = "International",
+		.device = "LG Optimus L9 II",
+		.build = "D60510a",
+		.check_sigs = 0x88f10d98,
+		.hdr = 0x88f84aa4,
+		.lg = 1,
+	},
+	{
+		.vendor = "MetroPCS",
+		.device = "LG Optimus F6",
+		.build = "MS50010e",
+		.check_sigs = 0x88f10260,
+		.hdr = 0x88f70508,
+		.lg = 1,
+	},
+	{
+		.vendor = "KDDI",
+		.device = "LG Isai",
+		.build = "LGL22",
+		.check_sigs = 0xf813458,
+		.hdr = 0xf8d41c0,
+		.lg = 1,
+	},
+	{
+		.vendor = "KT",
+		.device = "LG Optimus GK",
+		.build = "F220K",
+		.check_sigs = 0x88f11034,
+		.hdr = 0x88f54418,
+		.lg = 1,
+	},
 };
-
-#define PATTERN1 "\xf0\xb5\x8f\xb0\x06\x46\xf0\xf7"
-#define PATTERN2 "\xf0\xb5\x8f\xb0\x07\x46\xf0\xf7"
-#define PATTERN3 "\x2d\xe9\xf0\x41\x86\xb0\xf1\xf7"
-#define PATTERN4 "\x2d\xe9\xf0\x4f\xad\xf5\xc6\x6d"
-#define PATTERN5 "\x2d\xe9\xf0\x4f\xad\xf5\x21\x7d"
-#define PATTERN6 "\x2d\xe9\xf0\x4f\xf3\xb0\x05\x46"
-
-#define ABOOT_BASE_SAMSUNG 0x88dfffd8
-#define ABOOT_BASE_LG 0x88efffd8
-#define ABOOT_BASE_G2 0xf7fffd8
 
 unsigned char patch[] =
 "\xfe\xb5"
@@ -314,7 +336,8 @@ unsigned char patch[] =
 int patch_shellcode(unsigned int header, unsigned int ramdisk)
 {
 
-	int i, found_header, found_ramdisk;
+	unsigned int i;
+	int found_header, found_ramdisk;
 	unsigned int *ptr;
 
 	found_header = 0;
