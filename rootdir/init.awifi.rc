@@ -684,7 +684,6 @@ on post-fs-data
     setprop ro.ssbd.session /dev/block/platform/msm_sdcc.1/by-name/eksst
     setprop ro.ssbd.offset 0
 
-
 # bonkang.koo@lge.com 2012.10.23 set default sdcard fs type
     setprop vold.sdcard_fs_type none
 
@@ -1049,9 +1048,9 @@ on property:ro.fuse_sdcard=true
     start sdcard
 
 # Binding fuse mount point to /storage/emulated/legacy
-## on property:init.svc.sdcard=running
-##    wait /mnt/shell/emulated/0
-##    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
+on property:init.svc.sdcard=running
+    wait /mnt/shell/emulated/0
+    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
 
 # This will make sure that sdcard service starts as late_start.
 on nonencrypted
