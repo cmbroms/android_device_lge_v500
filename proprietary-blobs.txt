@@ -20,8 +20,6 @@ bin/rmt_storage
 bin/sensors.qcom
 bin/thermald
 bin/time_daemon
-etc/firmware/a300_pfp.fw
-etc/firmware/a300_pm4.fw
 etc/firmware/vidc_1080p.fw
 etc/firmware/vidc.b00
 etc/firmware/vidc.b01
@@ -29,15 +27,17 @@ etc/firmware/vidc.b02
 etc/firmware/vidc.b03
 etc/firmware/vidc.mdt
 lib/egl/eglsubAndroid.so
-lib/egl/libEGL_adreno200.so
-lib/egl/libGLESv1_CM_adreno200.so
-lib/egl/libGLESv2_adreno200.so
-lib/egl/libq3dtools_adreno200.so
+lib/egl/libEGL_adreno.so
+lib/egl/libGLESv1_CM_adreno.so
+lib/egl/libGLESv2_adreno.so
+lib/egl/libplayback_adreno.so
+lib/egl/libq3dtools_adreno.so
 lib/hw/camera.msm8960.so
 lib/hw/flp.msm8960.so
 lib/hw/gps.msm8960.so
 lib/hw/sensors.msm8960.so
 lib/libacdbloader.so
+lib/libadreno_utils.so
 lib/libadsprpc.so
 lib/libAKM.so
 lib/libalsautils.so
@@ -45,6 +45,9 @@ lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libc2d2_a3xx.so
 lib/libC2D2.so
+lib/libc2d30-a3xx.so
+lib/libc2d30.so
+lib/libCB.so
 lib/libchromatix_imx074_default_video.so
 lib/libchromatix_imx074_preview.so
 lib/libchromatix_imx074_video_hd.so
@@ -145,7 +148,9 @@ lib/libQSEEComAPI.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 lib/libril.so
-lib/libsc-a2xx.so
+lib/librs_adreno_sha1.so
+lib/librs_adreno.so
+lib/libRSDriver_adreno.so
 lib/libsc-a3xx.so
 lib/libsensor_reg.so
 lib/libsensor_user_cal.so
@@ -154,3 +159,5 @@ lib/libtime_genoff.so
 lib/libWVphoneAPI.so
 lib/libxml.so
 lib/libxt_v02.so
+vendor/firmware/a300_pfp.fw
+vendor/firmware/a300_pm4.fw
